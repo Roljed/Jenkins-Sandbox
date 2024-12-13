@@ -39,5 +39,5 @@ MYSQL_DB_CONTAINER=mysql-db
 MYSQL_DB_NAME=testJenkinsDB
 ```
 
-### Jenkins
-In order to make it work with Jenkins via ssh, envfile is for that exactly.
+### Jenkins integration with those variables
+The `.env` and `docker-compose.yml` files define variables for the container. Those become native to the container’s runtime environment but are invisible to Jenkins by default. By creating an `envfile` that explicitly exports these variables, Jenkins can source that file over SSH and thus access the needed variables for its tasks.
