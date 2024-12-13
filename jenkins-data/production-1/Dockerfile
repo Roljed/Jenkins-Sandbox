@@ -14,6 +14,7 @@ RUN useradd remote_user && \
 COPY remote-key.pub /home/remote_user/.ssh/authorized_keys    
 
 RUN chown remote_user:remote_user -R /home/remote_user/.ssh/ && \
+    chmod 700 /home/remote_user/.ssh && \
     chmod 600 /home/remote_user/.ssh/authorized_keys
 
 RUN /usr/bin/ssh-keygen -A
@@ -33,7 +34,9 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     pip3 install awscli --upgrade
 
 COPY remote-db-backup.sh /tmp/
-
 RUN chmod +x /tmp/remote-db-backup.sh
+
+COPY envfile /tmp/
+RUN chmod +x /tmp/envfile
 
 EXPOSE 22

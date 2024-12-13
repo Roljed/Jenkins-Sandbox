@@ -1,0 +1,6 @@
+echo "export AWS_S3_BUCKET_NAME=$AWS_S3_BUCKET_NAME" > /tmp/envfile
+echo "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> /tmp/envfile
+echo "export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> /tmp/envfile
+echo "export MYSQL_PASS=$MYSQL_PASS" >> /tmp/envfile
+echo "export MYSQL_DB_CONTAINER=$MYSQL_DB_CONTAINER" >> /tmp/envfile
+echo "export MYSQL_DB_NAME=$MYSQL_DB_NAME" >> /tmp/envfile

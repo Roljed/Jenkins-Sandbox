@@ -5,6 +5,8 @@ set -e
 BACKUP_DATE=$(date +%Y-%m-%d_%H-%M-%S)
 BACKUP_FILE_NAME=backup-db-$BACKUP_DATE.sql
 
+source /tmp/envfile
+
 echo "Starting database backup..."
 if mysqldump -u root -p"$MYSQL_PASS" -h "$MYSQL_DB_CONTAINER" "$MYSQL_DB_NAME" > /tmp/$BACKUP_FILE_NAME; then
     echo "Database backup created: /tmp/$BACKUP_FILE_NAME"
