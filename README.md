@@ -1,6 +1,9 @@
 # Jenkins Sandbox
 As stated in the `About` section, this is simply a sandbox for my use of Jenkins.
 
+## Motivation
+Backing up a MySQL database to an AWS S3 bucket via AWS CLI from a remote host that's connected to the MySQL server container.
+
 ## Setup
 This containes 3 docker containers:
 1. Jenkins, for automation
@@ -35,3 +38,6 @@ MYSQL_PASS=
 MYSQL_DB_CONTAINER=mysql-db
 MYSQL_DB_NAME=testJenkinsDB
 ```
+
+### Jenkins
+In order to make it work with Jenkins via ssh, envfile is for that exactly.
