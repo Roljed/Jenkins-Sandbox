@@ -1,0 +1,35 @@
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - "$PWD/jenkins-home:/var/jenkins_home"
+    networks:
+      - net
+  remote_host:
+    container_name: remote-host
+    image: remote-host
+    build:
+      context: production-1
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - MYSQL_PASS=${MYSQL_PASS}
+      - MYSQL_DB_CONTAINER=${MYSQL_DB_CONTAINER}
+      - MYSQL_DB_NAME=${MYSQL_DB_NAME}
+    networks:
+      - net
+  db_host:
+    container_name: mysql-db
+    image: mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=1234"
+    volumes:
+      - "$PWD/mysql_db_data:/var/lib/mysql"
+    networks:
+      - net
+networks:
+  net:
+
