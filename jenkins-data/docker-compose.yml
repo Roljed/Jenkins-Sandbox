@@ -28,7 +28,7 @@ services:
     environment:
       - "MYSQL_ROOT_PASSWORD=1234"
     volumes:
-      - "$PWD/mysql_db_data:/var/lib/mysql"
+      - "$PWD/mysql-db-data:/var/lib/mysql"
     networks:
       - net
 networks:

@@ -18,17 +18,12 @@ RUN chown remote_user:remote_user -R /home/remote_user/.ssh/ && \
     chmod 600 /home/remote_user/.ssh/authorized_keys
 
 RUN /usr/bin/ssh-keygen -A
-
 RUN rm -rf /run/nologin
-
 CMD /usr/sbin/sshd -D
 
 RUN yum -y install mysql
-
 RUN yum -y install curl
-
 RUN yum -y install python38
-
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py && \
     pip3 install awscli --upgrade
