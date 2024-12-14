@@ -1,0 +1,5 @@
+---
+- hosts: test1
+  tasks:
+    - name: Running shell command
+      shell: echo Hello World > /tmp/ansible-file
