@@ -1,5 +1,11 @@
 ---
 - hosts: test1
+  vars:
+    MSG: "This is a default debug message"
   tasks:
     - name: Running shell command
       shell: echo Hello World > /tmp/ansible-file
+
+    - name: Debug message
+      debug:
+        msg: "{{ MSG }}"
