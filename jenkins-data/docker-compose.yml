@@ -36,13 +36,14 @@ services:
   gitlab:
     image: gitlab/gitlab-ee:latest
     container_name: git-server
+    platform: linux/amd64
     hostname: 'gitlab.example.com'
     ports:
       - '8090:80'
     volumes:
-      - '$GITLAB_HOME/config:/etc/gitlab'
-      - '$GITLAB_HOME/logs:/var/log/gitlab'
-      - '$GITLAB_HOME/data:/var/opt/gitlab'
+      - "$PWD/git-server/config:/etc/gitlab"
+      - "$PWD/git-server/logs:/var/log/gitlab"
+      - "$PWD/git-server/data:/var/opt/gitlab"
     shm_size: '256m'
     networks:
       - net
