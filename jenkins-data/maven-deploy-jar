@@ -1,0 +1,5 @@
+echo "*********"
+echo "Deploying"
+echo "*********"
+
+java -jar /var/jenkins_home/workspace/maven-test/target/my-app-1.0-SNAPSHOT.jar
