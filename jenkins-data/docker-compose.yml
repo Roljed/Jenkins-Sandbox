@@ -33,6 +33,20 @@ services:
       - "$PWD/mysql-db-data:/var/lib/mysql"
     networks:
       - net
+  gitlab:
+    image: gitlab/gitlab-ee:latest
+    container_name: git-server
+    hostname: 'gitlab.example.com'
+    ports:
+      - '8090:80'
+    volumes:
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
+    shm_size: '256m'
+    networks:
+      - net
+
 networks:
   net:
 
