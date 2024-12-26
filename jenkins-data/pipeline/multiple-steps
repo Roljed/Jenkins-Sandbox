@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+    environment {
+        secret = credentials('ADMIN_NAME')
+        MACHINE = 'linux-fedora'
+        USERNAME = 'roljed'
+    }
+    stages {
+        stage('Environment') {
+            steps {
+                 sh 'echo "My admin name is $secret"'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                sh 'echo "Building A"'
+                sh '''
+                    echo "Building B"
+                    ls -lah
+                '''
+                sh 'echo "machine: $MACHINE"'
+                sh 'echo "usernam: $USERNAME"'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                timeout(time: 3, unit: 'SECONDS') {
+                    sh 'sleep 10'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                retry(3) {
+                    sh "This is going to fail :c"
+                }
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Always'
+        }
+        success {
+            echo 'Success'
+        }
+        failure {
+            echo 'Failure'
+        }
+        unstable {
+            echo 'Unstable'
+        }
+    }
+}
