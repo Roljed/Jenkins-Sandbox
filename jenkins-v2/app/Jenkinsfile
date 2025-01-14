@@ -23,5 +23,17 @@ pipeline {
                 }
             }
         }
+        stage('Test') {
+            steps {
+                echo "Test stage"
+                sh '''
+                    if [ -f ./build/index.html ]; then
+                        echo "index.html file exist"
+                    else
+                        echo "file does not exist"
+                    fi
+                '''
+            }
+        }
     }
 }
