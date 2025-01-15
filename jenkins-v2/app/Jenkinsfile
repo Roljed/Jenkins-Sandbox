@@ -18,6 +18,7 @@ pipeline {
                         npm --version
                         npm ci
                         npm run build
+                        next export
                         ls -la
                     '''
                 }
@@ -34,7 +35,7 @@ pipeline {
                 echo "Test stage"
                 sh '''
                     ls -l
-                    test -f build/index.html
+                    test -f /.next/server/pages/index-v2.html
                     npm test
                 '''
             }
