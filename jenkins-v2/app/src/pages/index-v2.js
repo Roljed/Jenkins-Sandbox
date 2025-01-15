@@ -1,4 +1,4 @@
-// pages/index.js
+// pages/index-v2.js
 export default function Home() {
     return (
         <div>
