@@ -18,7 +18,6 @@ pipeline {
                         npm --version
                         npm ci
                         npm run build
-                        next export
                         ls -la
                     '''
                 }
