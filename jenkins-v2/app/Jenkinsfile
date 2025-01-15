@@ -34,7 +34,7 @@ pipeline {
                 echo "Test stage"
                 sh '''
                     ls -l
-                    test -f /jenkins-v2/app/.next/server/pages/index-v2.html
+                    test -f jenkins-v2/app/.next/server/pages/index-v2.html
                     cd jenkins-v2/app && npm test
                 '''
             }
