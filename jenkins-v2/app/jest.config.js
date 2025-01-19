@@ -11,6 +11,10 @@ const customJestConfig = {
         'default',
         ['jest-junit', { outputDirectory: './reports', outputName: 'junit.xml' }],
     ],
+    testPathIgnorePatterns: [
+        '<rootDir>/playwright/', // Ignore Playwright tests
+        '<rootDir>/node_modules/', // Ignore node_modules (default behavior)
+    ],
 };
 
 module.exports = createJestConfig(customJestConfig);
