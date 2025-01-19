@@ -39,6 +39,24 @@ pipeline {
                 '''
             }
         }
+        stage('End to end') {
+            agent {
+                docker {
+                    image 'mcr.microsoft.com/playwright:v1.49.1-noble'
+                    reuseNode true
+                }
+            }
+            steps {
+                dir('jenkins-v2/app') {
+                    echo 'End to end stage'
+                    sh '''
+                        npm install -g serve
+                        serve -s build
+                        npx playwright test
+                    '''
+                }
+            }
+        }
     }
     post {
         always {
