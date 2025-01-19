@@ -23,20 +23,39 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
+        stage('Run Test')
+        {
+            parallel {
+                stage('Test 1') {
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        echo "Test stage"
+                        sh '''
+                            ls -l
+                            test -f jenkins-v2/app/.next/server/pages/index-v2.html
+                        '''
+                    }
                 }
-            }
-            steps {
-                echo "Test stage"
-                sh '''
-                    ls -l
-                    test -f jenkins-v2/app/.next/server/pages/index-v2.html
-                    cd jenkins-v2/app && npm test
-                '''
+                stage('Test 2') {
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        echo "Test stage"
+                        sh '''
+                            ls -l
+                            cd jenkins-v2/app && npm test
+                        '''
+                    }
+                }
             }
         }
     }
