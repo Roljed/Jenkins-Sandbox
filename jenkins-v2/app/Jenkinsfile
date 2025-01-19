@@ -40,4 +40,9 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            junit 'jenkins-v2/app/reports/junit.xml'
+        }
+    }
 }
