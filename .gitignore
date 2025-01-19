@@ -4,3 +4,7 @@
 *key*
 *.pem
 lib/
+.next/
+node_modules/
+build/
+jenkins-v2/app/reports/
