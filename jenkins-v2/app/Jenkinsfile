@@ -63,7 +63,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Deploy to staging') {
                     agent {
                         docker {
                             image 'node:18-alpine'
@@ -74,6 +74,27 @@ pipeline {
                         dir('jenkins-v2/app')
                         {
                             sh '''
+                                echo "Deploying to stage environment"
+                                npm install netlify-cli
+                                node_modules/.bin/netlify --version
+                                node_modules/.bin/netlify status
+                                node_modules/.bin/netlify deploy --dir=.next
+                            '''
+                        }
+                    }
+        }
+        stage('Deploy to production') {
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        dir('jenkins-v2/app')
+                        {
+                            sh '''
+                                echo "Deploying to production environment"
                                 npm install netlify-cli
                                 node_modules/.bin/netlify --version
                                 node_modules/.bin/netlify status
@@ -81,7 +102,7 @@ pipeline {
                             '''
                         }
                     }
-                }
+        }
     }
     post {
         always {
