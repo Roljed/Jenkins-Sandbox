@@ -74,7 +74,7 @@ pipeline {
         stage('Deploy to staging') {
                     agent {
                         docker {
-                            image 'node:18-alpine'
+                            image 'my-node18'
                             reuseNode true
                         }
                     }
@@ -83,7 +83,6 @@ pipeline {
                         {
                             sh '''
                                 echo "Deploying to stage environment"
-                                npm install netlify-cli node-jq
                                 node_modules/.bin/netlify --version
                                 node_modules/.bin/netlify status
                                 node_modules/.bin/netlify deploy --dir=.next --json > deploy-output.json
@@ -102,7 +101,7 @@ pipeline {
         stage('Deploy to production') {
                     agent {
                         docker {
-                            image 'node:18-alpine'
+                            image 'my-node18'
                             reuseNode true
                         }
                     }
@@ -111,7 +110,6 @@ pipeline {
                         {
                             sh '''
                                 echo "Deploying to production environment"
-                                npm install netlify-cli
                                 node_modules/.bin/netlify --version
                                 node_modules/.bin/netlify status
                                 node_modules/.bin/netlify deploy --dir=.next --prod
