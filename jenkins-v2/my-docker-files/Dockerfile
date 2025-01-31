@@ -3,4 +3,4 @@ LABEL authors="nahshon"
 
 WORKDIR /app
 
-RUN npm install netlify-cli node-jq
+RUN npm install -g netlify-cli node-jq
