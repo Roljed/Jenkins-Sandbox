@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build docker image') {
+            steps {
+                dir('jenkins-v2/my-docker-files')
+                {
+                    sh 'docker build -t my-node18 .'
+                }
+            }
+        }
+    }
+}
