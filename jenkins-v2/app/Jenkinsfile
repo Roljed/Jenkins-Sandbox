@@ -7,6 +7,14 @@ pipeline {
     }
 
     stages {
+        stage('Docker') {
+            steps {
+                dir('jenkins-v2/my-docker-files')
+                {
+                    sh 'docker build -t my-node18'
+                }
+            }
+        }
         stage('Build') {
             agent {
                 docker {
