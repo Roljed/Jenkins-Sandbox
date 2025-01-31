@@ -83,10 +83,10 @@ pipeline {
                         {
                             sh '''
                                 echo "Deploying to stage environment"
-                                node_modules/.bin/netlify --version
-                                node_modules/.bin/netlify status
-                                node_modules/.bin/netlify deploy --dir=.next --json > deploy-output.json
-                                node_modules/.bin/node-jq -r '.deploy_url' deploy-output.json
+                                netlify --version
+                                netlify status
+                                netlify deploy --dir=.next --json > deploy-output.json
+                                node-jq -r '.deploy_url' deploy-output.json
                             '''
                         }
                     }
@@ -110,9 +110,9 @@ pipeline {
                         {
                             sh '''
                                 echo "Deploying to production environment"
-                                node_modules/.bin/netlify --version
-                                node_modules/.bin/netlify status
-                                node_modules/.bin/netlify deploy --dir=.next --prod
+                                netlify --version
+                                netlify status
+                                netlify deploy --dir=.next --prod
                             '''
                         }
                     }
