@@ -10,7 +10,7 @@ pipeline {
            agent {
                 docker {
                     image 'amazon/aws-cli'
-                    args "--entrypoint=''"
+                    args "--entrypoint='' -v ${WORKSPACE}:/workspace"
                 }
            }
            steps {
@@ -18,6 +18,8 @@ pipeline {
                     sh '''
                         aws --version
                         aws s3 ls
+                        cd /workspace
+                        ls -l # Verify the file exists
                         aws ecs register-task-definition --cli-input-json file://task-definition-prod.json
                     '''
                 }
@@ -31,8 +33,7 @@ pipeline {
                 }
             }
             steps {
-                dir('jenkins-v2/app')
-                {
+                dir('jenkins-v2/app') {
                     sh '''
                         ls -la
                         node --version
