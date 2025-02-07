@@ -34,6 +34,7 @@ pipeline {
                 dir('jenkins-v2/app/aws/') {
                     sh '''
                         ls -la
+                        ls -la ../
                         docker build -t my-jenkins-app-v2 .
                     '''
                 }
