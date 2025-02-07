@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                sh 'docker build -t -f aws/ my-jenkins-app-v2 .'
+                sh 'docker build -f aws/ -t my-jenkins-app-v2 .'
             }
         }
         stage('Deploy to AWS') {
