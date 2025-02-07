@@ -5,7 +5,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                 sh '''
-                    docker build -f jenkins-v2/my-docker-files -t my-node18 .
+                    docker build -f jenkins-v2/my-docker-files/Dockerfile -t my-node18 .
                     docker build -f jenkins-v2/aws/Dockerfile.aws.cli -t my-aws-cli .
                 '''
             }
