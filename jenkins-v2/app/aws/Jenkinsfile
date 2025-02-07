@@ -24,18 +24,17 @@ pipeline {
                         npm --version
                         npm ci
                         npm run build
-                        ls -la
+                        ls -la .next
                     '''
                 }
             }
         }
         stage('Build docker image') {
             steps {
-                dir('jenkins-v2/app/aws/') {
+                dir('jenkins-v2/app/') {
                     sh '''
                         ls -la
-                        ls -la ../
-                        docker build -t my-jenkins-app-v2 .
+                        docker build -t my-jenkins-app-v2 -f jenkins-v2/app/aws/Dockerfile .
                     '''
                 }
             }
